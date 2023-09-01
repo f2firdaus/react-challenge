@@ -23,7 +23,7 @@ const SearchBox: FC = () => {
     const fetchData = await fetch(api)
     const response = await fetchData.json()
 
-    setSearchResults(response.message.slice(0, 10)) // Store the array of messages
+    setSearchResults((response.message).slice(0, 10)) // Store the array of messages
   }
 
   const handleFav = (image) => {
@@ -31,19 +31,19 @@ const SearchBox: FC = () => {
   }
 
   const handleInput = (e: any) => {
-    setSearchQuery(e.target.value)
+    setSearchQuery(e.target.value.toLowerCase())
   }
 
   return (
     <Container>
       <Section>
-        <Searchinput value={searchQuery} onChange={handleInput} />
+        <Searchinput type='text' value={searchQuery} onChange={handleInput} />
         <SearchButton onClick={handleSearch}>
           <SearchIcon icon="searchIcon" alt="search icon" /> <Text> Search</Text>
         </SearchButton>
       </Section>
       <SearchResult>
-        {searchResults.map((img, idx) => (
+        {(searchResults).map((img, idx) => (
           <ImageSection>
             <Dogimg key={idx} src={img} alt="dog"></Dogimg>
             <HeartSection onClick={()=>handleFav(img)}>
@@ -98,7 +98,8 @@ const Searchinput = styled.input({
   backgroundColor: 'lightgrey',
   border: 'none',
   borderRadius: '4px',
-  color: '#F7F7F7',
+  color: '#000000',
+  padding:'5px'
 })
 
 const SearchButton = styled.button({

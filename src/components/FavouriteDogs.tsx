@@ -1,13 +1,18 @@
 import React from 'react'
 import styled from '@emotion/styled';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/reducer'
 
 import Heart from './Heart';
+import { removeFavImages } from '../redux/actions';
 const FavouriteDogs = () => {
 
     const favImage = useSelector((state:RootState) => state.addFavImage);
-    console.log(favImage)
+    console.log(favImage);
+    const dispatch =useDispatch()
+    const removeImg = (image) => {
+        dispatch(removeFavImages(image))
+    }
   return (
       <Container>
           <Section>
@@ -19,8 +24,8 @@ const FavouriteDogs = () => {
             
                   <ImageSection key={idx}>
                   <ImageContainer src={img} alt="fav image" />
-                  <ImgCont>
-          <Heart icon='redHeartIcon' alt='red heart icon' />
+                  <ImgCont onClick={()=>removeImg(img)}>
+          <Heart  icon='redHeartIcon' alt='red heart icon' />
                       </ImgCont>
                       </ImageSection>
             
@@ -54,7 +59,7 @@ const ImageContainer = styled.img({
 })
 const Section = styled.div({
     display: 'flex',
-    
+    gap:'5px',
     alignItems:'center'
 })
 const Favourite = styled.div({
