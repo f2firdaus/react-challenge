@@ -4,14 +4,10 @@ import Heart from './Heart'
 
 const Header: FC = () => {
   return (
-    <>
     <Container>
       <Title>Dog Breeds</Title>
       <Heart icon="redHeartIcon" alt="red heart icon" />
-    
     </Container>
-      
-      </>
   )
 }
 
